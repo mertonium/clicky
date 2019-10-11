@@ -11,6 +11,9 @@ config :clicky, ClickyWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
+  live_view: [
+    signing_salt: "tjkIihIyETcPwswn6R+SPCnwBJddRGWyM89OWEey+zp7zC3KXimxJZzk2gvHTUAl"
+  ],
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
@@ -52,7 +55,8 @@ config :clicky, ClickyWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/clicky_web/{live,views}/.*(ex)$",
-      ~r"lib/clicky_web/templates/.*(eex)$"
+      ~r"lib/clicky_web/templates/.*(eex)$",
+      ~r{lib/clicky_web/live/.*(ex)$}
     ]
   ]
 
