@@ -1,16 +1,26 @@
 defmodule Clicky.Counter do
-  use Agent
+  use GenServer
+
+  @table :counter_tab
 
   def start_link(initial_value) do
-    Agent.start_link(fn -> initial_value end, name: __MODULE__)
+    GenServer.start_link(__MODULE__, initial_value, name: __MODULE__)
   end
 
   def value do
-    Agent.get(__MODULE__, & &1)
+    [{"total", count}] = :ets.lookup(@table, "total")
+    count
   end
 
   def increment do
-    Agent.update(__MODULE__, &(&1 + 1))
-    Agent.get(__MODULE__, & &1)
+    :ets.update_counter(@table, "total", {2, 1}, {"total", 0})
+  end
+
+  def show_table, do: :ets.tab2list(@table)
+
+
+  def init(_) do
+    :ets.new(@table, [:set, :named_table, :public])
+    {:ok, %{}}
   end
 end
