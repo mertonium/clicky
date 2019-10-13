@@ -8,6 +8,7 @@ defmodule Clicky.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      {Clicky.Counter, 0},
       # Start the endpoint when the application starts
       ClickyWeb.Endpoint
       # Starts a worker by calling: Clicky.Worker.start_link(arg)
