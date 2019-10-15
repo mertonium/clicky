@@ -12,7 +12,10 @@ use Mix.Config
 config :clicky, ClickyWeb.Endpoint,
   url: [host: ~s[#{System.get_env("APP_NAME")}.gigalixirapp.com], port: 80],
   server: true,
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  live_view: [
+    signing_salt: System.get_env("SIGNING_SALT")
+  ]
 
 # Do not print debug messages in production
 config :logger, level: :info
