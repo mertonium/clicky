@@ -18,9 +18,9 @@ defmodule Clicky.Counter do
 
   def show_table, do: :ets.tab2list(@table)
 
-
-  def init(_) do
+  def init(initial_value) do
     :ets.new(@table, [:set, :named_table, :public])
+    :ets.insert(@table, {"total", initial_value})
     {:ok, %{}}
   end
 end
