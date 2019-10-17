@@ -12,6 +12,18 @@ defmodule Clicky.Counter do
     count
   end
 
+  def user_counts do
+    @table
+    |> :ets.tab2list()
+    |> Enum.into(%{})
+    |> Map.delete("total")
+  end
+
+  def increment(user_id) do
+    :ets.update_counter(@table, user_id, {2, 1}, {user_id, 0})
+    increment()
+  end
+
   def increment do
     :ets.update_counter(@table, "total", {2, 1}, {"total", 0})
   end
