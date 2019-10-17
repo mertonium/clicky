@@ -1,0 +1,5 @@
+<h1>Hello, who are you?</h1>
+<%= form_for :user, Routes.page_path(@conn, :login), fn f -> %>
+  <%= text_input f, :handle, placeholder: "your name", value: @user.handle %>
+  <%= submit "Go!" %>
+<% end %>

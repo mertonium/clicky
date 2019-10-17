@@ -1,6 +1,13 @@
 <div>
-  <h1>Yo!</h1>
   <div><%= @count %></div>
-  <button phx-click="increment">CLICK ME</button>
+  <button phx-click="increment" phx-value-user="<%= @user_id %>">CLICK ME</button>
+
+  <dl>
+    <%= for {name, count} <- @user_counts do %>
+      <dt><%= name %></dt>
+      <dd><%= count %></dt>
+    <% end %>
+  </dl>
 </div>
+
 

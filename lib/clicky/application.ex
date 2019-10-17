@@ -8,6 +8,7 @@ defmodule Clicky.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      Clicky.UserStore,
       {Clicky.Counter, 0},
       # Start the endpoint when the application starts
       ClickyWeb.Endpoint

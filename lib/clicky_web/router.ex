@@ -18,6 +18,8 @@ defmodule ClickyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    post "/login", PageController, :login
+    get "/arena", PageController, :arena
   end
 
   # Other scopes may use custom stacks.
