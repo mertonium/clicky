@@ -4,9 +4,13 @@ defmodule ClickyWeb.PageController do
   alias Phoenix.LiveView
 
   def index(conn, _params) do
-    conn = Plug.Conn.fetch_cookies(conn)
+    user_id = fetch_user_id(conn)
 
-    render(conn, "login.html", user: %User{})
+    if is_nil(user_id) do
+      render(conn, "login.html", user: %User{})
+    else
+      redirect_to_arena(conn)
+    end
   end
 
   def login(conn, params) do
@@ -22,11 +26,7 @@ defmodule ClickyWeb.PageController do
   end
 
   def arena(conn, _params) do
-    user_id =
-      conn
-      |> fetch_cookies()
-      |> Map.get(:cookies, %{})
-      |> Map.get("clicky_id")
+    user_id = fetch_user_id(conn)
 
     if is_nil(user_id) do
       redirect_to_homepage(conn)
@@ -46,4 +46,10 @@ defmodule ClickyWeb.PageController do
   defp redirect_to_arena(conn), do: redirect(conn, to: "/arena")
   defp redirect_to_homepage(conn), do: redirect(conn, to: "/")
 
+  defp fetch_user_id(conn) do
+    conn
+    |> fetch_cookies()
+    |> Map.get(:cookies, %{})
+    |> Map.get("clicky_id")
+  end
 end
