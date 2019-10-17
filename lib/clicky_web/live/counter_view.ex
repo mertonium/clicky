@@ -21,7 +21,7 @@ defmodule ClickyWeb.CounterView do
   end
 
   def handle_info(%{topic: @topic, payload: state}, socket) do
-    IO.puts "In the handle_info with state = #{inspect(state)}"
+    # IO.puts "In the handle_info with state = #{inspect(state)}"
     {:noreply, assign(socket, state)}
   end
 
