@@ -1,13 +1,17 @@
-<div>
-  <div><%= @count %></div>
-  <button phx-click="increment" phx-value-user="<%= @user_id %>">CLICK ME</button>
+<section>
+  <div class="f-headline lh-solid pb5">
+    <%= @count %>
+  </div>
 
-  <dl>
-    <%= for {name, count} <- @user_counts do %>
-      <dt><%= name %></dt>
-      <dd><%= count %></dt>
-    <% end %>
-  </dl>
-</div>
+  <button phx-click="increment" phx-value-user="<%= @user_id %>" class="f6 link dim br1 ph3 pv2 mb2 dib white bg-dark-pink b--none">CLICK ME</button>
 
+  <h4 class="f6 fw6">Clicks by user</h4>
+
+  <%= for {name, count} <- @user_counts do %>
+    <dl class="f6 lh-title mv2">
+      <dt class="dib b"><%= name %></dt>
+      <dd class="dib ml0 gray"><%= count %></dd>
+    </dl>
+  <% end %>
+</section>
 
