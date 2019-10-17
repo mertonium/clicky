@@ -1,5 +1,7 @@
-<h1>Hello, who are you?</h1>
-<%= form_for :user, Routes.page_path(@conn, :login), fn f -> %>
-  <%= text_input f, :handle, placeholder: "your name", value: @user.handle %>
-  <%= submit "Go!" %>
+<%= form_for :user, Routes.page_path(@conn, :login), [class: "pa4 black-80"], fn f -> %>
+  <div class="measure">
+    <label for="user[handle]" class="f6 b db mb2">Who are you?</label>
+    <%= text_input f, :handle, placeholder: "your name", value: @user.handle, class: "input-reset ba b--black-20 pa2 mb2 db w-100" %>
+    <%= submit "Enter", class: "b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" %>
+  </div>
 <% end %>
